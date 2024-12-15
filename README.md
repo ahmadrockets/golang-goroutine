@@ -138,7 +138,40 @@ func main() {
 	fmt.Println(<-ch)
 }
 ```
-Kode diatas artinya kita membuat channel dengan kapasitas 2 buffers. 
+Kode diatas artinya kita membuat channel dengan kapasitas 2 buffers. Jika dijalankan akan menampilkan.
+```bash
+fahrudin@belajar-goroutine $ go run buffered_channel/buffered_channel.go 
+1
+2
+```
+
+Berikut ini contoh code channel lainnya.
+```go
+package main
+
+import "fmt"
+
+func main() {
+	ch2 := make(chan int, 2)
+	ch2 <- 1
+	ch2 <- 2
+	ch2 <- 3
+	fmt.Println(<-ch2)
+	fmt.Println(<-ch2)
+	fmt.Println(<-ch2)
+}
+```
+
+Jika dijalankan maka akan terjadi error deadlock karena kapasitas channel yang didefinisikan adalah 2 buffers, tetapi ada 3 kali value dikirimkan ke channel tersebut.
+```bash
+fahrudin@belajar-goroutine $ go run buffered_channel/buffered_channel.go
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan send]:
+main.main()
+        /golang-goroutine/buffered_channel/buffered_channel.go:9 +0x58
+exit status 2
+```
 
 ## Channel Select
 ## Channel Range & Close
