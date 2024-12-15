@@ -138,8 +138,7 @@ func main() {
 	fmt.Println(<-ch)
 }
 ```
-Kode diatas artinya kita membuat channel dengan kapasitas 2 buf. 
-
+Kode diatas artinya kita membuat channel dengan kapasitas 2 buffers. 
 
 ## Channel Select
 ## Channel Range & Close
